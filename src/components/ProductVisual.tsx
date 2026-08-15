@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { Product, VisualKind } from "@/lib/products";
 
 type ProductVisualProps = {
@@ -145,7 +146,7 @@ function Pack({ fill, accent }: { fill: string; accent: string }) {
 
 const visuals: Record<
   VisualKind,
-  (props: { fill: string; accent: string }) => JSX.Element
+  (props: { fill: string; accent: string }) => ReactElement
 > = {
   runner: Runner,
   court: Court,
