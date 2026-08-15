@@ -6,11 +6,24 @@ import { useCart } from "@/components/CartProvider";
 import { Wordmark } from "@/components/Mark";
 
 const nav = [
-  { href: "/shop", label: "Shop" },
-  { href: "/shop/atelier", label: "Atelier" },
-  { href: "/shop/studio", label: "Studio" },
-  { href: "/shop/trail", label: "Trail" },
-  { href: "/about", label: "Our story" },
+  { href: "/shop/new", label: "New" },
+  { href: "/shop/men", label: "Men" },
+  { href: "/shop/women", label: "Women" },
+  { href: "/shop/running", label: "Running" },
+  { href: "/shop/training", label: "Training" },
+  { href: "/shop/lifestyle", label: "Lifestyle" },
+  { href: "/shop/outerwear", label: "Outerwear" },
+  { href: "/shop/footwear", label: "Footwear" },
+  { href: "/shop/sale", label: "Sale" },
+];
+
+const mobile = [
+  { href: "/shop/new", label: "New Arrivals" },
+  { href: "/shop/best-sellers", label: "Best Sellers" },
+  { href: "/shop/running", label: "Running" },
+  { href: "/shop/training", label: "Training" },
+  { href: "/shop/outerwear", label: "Outerwear" },
+  { href: "/shop/sale", label: "Sale" },
 ];
 
 export function Header() {
@@ -44,21 +57,21 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md transition-[padding] ${
+      className={`sticky top-0 z-40 border-b border-line/80 bg-cream/90 backdrop-blur-md transition-[padding] ${
         compact ? "py-2.5" : "py-4"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
         <Link href="/" className="shrink-0" aria-label="Van & Matthew home">
           <Wordmark compact={compact} />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Primary">
           {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-[0.78rem] uppercase tracking-[0.16em] text-ink-soft transition-colors hover:text-ink"
+              className="text-[0.72rem] uppercase tracking-[0.14em] text-ink-soft transition-colors hover:text-ink"
             >
               {item.label}
             </Link>
@@ -68,17 +81,17 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/cart"
-            className="text-[0.78rem] uppercase tracking-[0.16em] text-ink"
+            className="text-[0.72rem] uppercase tracking-[0.14em] text-ink"
           >
-            Cart
+            Bag
             <span className="sr-only"> items</span>
-            <span aria-live="polite" className="ml-1 text-bronze-deep">
+            <span aria-live="polite" className="ml-1 text-copper">
               ({count})
             </span>
           </Link>
           <button
             type="button"
-            className="lg:hidden text-[0.78rem] uppercase tracking-[0.16em]"
+            className="xl:hidden text-[0.72rem] uppercase tracking-[0.14em]"
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setOpen((value) => !value)}
@@ -91,13 +104,13 @@ export function Header() {
       {open ? (
         <div
           id={menuId}
-          className="lg:hidden border-t border-line bg-paper"
+          className="xl:hidden border-t border-line bg-cream"
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
         >
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-6" aria-label="Mobile">
-            {nav.map((item) => (
+            {mobile.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -108,11 +121,18 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/about"
               className="pt-4 text-[0.78rem] uppercase tracking-[0.16em] text-ink-soft"
               onClick={() => setOpen(false)}
             >
-              Contact
+              Our Story
+            </Link>
+            <Link
+              href="/contact"
+              className="pt-2 text-[0.78rem] uppercase tracking-[0.16em] text-ink-soft"
+              onClick={() => setOpen(false)}
+            >
+              Help
             </Link>
           </nav>
         </div>

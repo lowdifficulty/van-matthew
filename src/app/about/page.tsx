@@ -2,59 +2,50 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Our story",
-  description:
-    "Van & Matthew is a dual-founder athletic house. Stillness and motion, held in the same last.",
+  title: "Our Story",
+  description: "Meet Van & Matthew, an independent sportswear company from Hudson, New York.",
 };
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 md:px-8">
-      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-bronze-deep">Our story</p>
+      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-copper">Our Story</p>
       <h1 className="display mt-3 text-5xl leading-tight md:text-6xl">
-        Van designs the pause. Matthew designs the work.
+        Built in Hudson. Made to move.
       </h1>
       <p className="mt-8 text-lg leading-8 text-ink-soft">
-        They met on a dawn path above the Hudson, one carrying a notebook of
-        drape, the other a worn pair of trainers and a list of what the last
-        mile still got wrong. Van & Matthew began as an argument that never
-        resolved — and then became a house because the argument was the point.
+        Van & Matthew was created in Hudson, New York around a simple idea:
+        sportswear should perform without taking over your entire identity.
       </p>
       <p className="mt-6 leading-8 text-ink-soft">
-        We are not a sports conglomerate. We do not name seasons after campaigns.
-        We cut a small number of pieces, name them ourselves, and stand behind
-        the materials. Performance is treated as a form of care: a midsole that
-        stays honest, a shell that packs without theater, a tee that can leave
-        the studio.
+        We wanted clothing that could handle a run, a hard training session, a
+        long travel day, or a cold walk through town—and still feel right once
+        the workout was over.
       </p>
-      <div className="mt-12 grid gap-8 border-y border-line py-10 md:grid-cols-2">
-        <div>
-          <h2 className="display text-3xl">Van</h2>
-          <p className="mt-3 text-sm leading-7 text-ink-soft">
-            Pattern, proportion, and the walk home. Van came from womenswear
-            ateliers and still refuses a garment that only works in motion.
-          </p>
-        </div>
-        <div>
-          <h2 className="display text-3xl">Matthew</h2>
-          <p className="mt-3 text-sm leading-7 text-ink-soft">
-            Lasts, foam, weather. Matthew spent years on footbeds and field
-            tests, and still believes a shoe should disappear after the third
-            wear.
-          </p>
-        </div>
-      </div>
-      <p className="mt-10 leading-8 text-ink-soft">
-        The atelier is in Hudson, New York — a former sail loft with north
-        light and a single long table. Fittings are by note. Drops are
-        announced in the house letter, not a countdown clock.
+      <p className="mt-6 leading-8 text-ink-soft">
+        Hudson became the natural reference point. It has edge and calm in the
+        same frame. Old industrial buildings sit near open water. New ideas live
+        beside things built to last. New York City is close enough to influence
+        the pace, but far enough away to leave room to think.
       </p>
+      <p className="mt-6 leading-8 text-ink-soft">That tension shapes the brand.</p>
+      <p className="mt-6 leading-8 text-ink-soft">
+        Van & Matthew is technical without looking overly engineered. Athletic
+        without being loud. Premium without becoming delicate. We focus on useful
+        fabrics, strong proportions, repeat-wear comfort, and details that earn
+        their place.
+      </p>
+      <p className="mt-6 leading-8 text-ink-soft">
+        We are not interested in making more noise. We are interested in making
+        better things to move in.
+      </p>
+      <p className="display mt-12 text-3xl">Upstate roots. Everywhere motion.</p>
       <p className="mt-10">
         <Link
-          href="/shop"
-          className="text-[0.75rem] uppercase tracking-[0.16em] text-bronze-deep underline-offset-4 hover:underline"
+          href="/hudson"
+          className="text-[0.75rem] uppercase tracking-[0.16em] text-copper underline-offset-4 hover:underline"
         >
-          Shop the house
+          Hudson, New York
         </Link>
       </p>
     </div>

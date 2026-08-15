@@ -10,7 +10,7 @@ type ProductVisualProps = {
 function Runner({ fill, accent }: { fill: string; accent: string }) {
   return (
     <>
-      <ellipse cx="200" cy="196" rx="118" ry="14" fill="#16130f" opacity="0.08" />
+      <ellipse cx="200" cy="196" rx="118" ry="14" fill="#1a1612" opacity="0.08" />
       <path
         d="M72 148c28-38 86-62 148-48 42 10 78 38 86 62 4 12-8 22-28 26-46 8-92 6-138-2-38-6-76-10-80-20-2-6 4-12 12-18z"
         fill={fill}
@@ -24,7 +24,7 @@ function Runner({ fill, accent }: { fill: string; accent: string }) {
       />
       <path
         d="M70 164c40 10 90 16 140 12 28-2 56-8 72-16"
-        stroke="#16130f"
+        stroke="#1a1612"
         strokeWidth="6"
         opacity="0.18"
         fill="none"
@@ -37,13 +37,13 @@ function Runner({ fill, accent }: { fill: string; accent: string }) {
 function Court({ fill, accent }: { fill: string; accent: string }) {
   return (
     <>
-      <ellipse cx="200" cy="198" rx="110" ry="12" fill="#16130f" opacity="0.08" />
+      <ellipse cx="200" cy="198" rx="110" ry="12" fill="#1a1612" opacity="0.08" />
       <path
         d="M78 156c8-36 48-62 110-62 54 0 96 22 112 52 6 12-4 22-24 26H96c-16 0-22-6-18-16z"
         fill={fill}
       />
       <path d="M118 118h92" stroke={accent} strokeWidth="4" />
-      <path d="M86 164h228" stroke="#16130f" strokeWidth="10" opacity="0.2" />
+      <path d="M86 164h228" stroke="#1a1612" strokeWidth="10" opacity="0.2" />
       <rect x="250" y="128" width="28" height="18" rx="3" fill={accent} opacity="0.85" />
     </>
   );
@@ -52,7 +52,7 @@ function Court({ fill, accent }: { fill: string; accent: string }) {
 function Knit({ fill, accent }: { fill: string; accent: string }) {
   return (
     <>
-      <ellipse cx="200" cy="198" rx="100" ry="12" fill="#16130f" opacity="0.08" />
+      <ellipse cx="200" cy="198" rx="100" ry="12" fill="#1a1612" opacity="0.08" />
       <path
         d="M120 150c8-44 36-70 80-70s72 26 80 70c4 18-8 28-28 30H148c-20-2-32-12-28-30z"
         fill={fill}
@@ -63,7 +63,7 @@ function Knit({ fill, accent }: { fill: string; accent: string }) {
         strokeWidth="3"
         fill="none"
       />
-      <path d="M132 168c22 8 46 12 68 12s46-4 68-12" stroke="#16130f" strokeWidth="8" opacity="0.16" fill="none" />
+      <path d="M132 168c22 8 46 12 68 12s46-4 68-12" stroke="#1a1612" strokeWidth="8" opacity="0.16" fill="none" />
     </>
   );
 }
@@ -71,13 +71,13 @@ function Knit({ fill, accent }: { fill: string; accent: string }) {
 function Slip({ fill, accent }: { fill: string; accent: string }) {
   return (
     <>
-      <ellipse cx="200" cy="198" rx="108" ry="12" fill="#16130f" opacity="0.08" />
+      <ellipse cx="200" cy="198" rx="108" ry="12" fill="#1a1612" opacity="0.08" />
       <path
         d="M86 160c16-40 70-58 128-46 46 10 86 34 94 52 4 10-10 18-30 20H108c-18 0-26-8-22-26z"
         fill={fill}
       />
       <path d="M150 132c18-8 40-10 62-4" stroke={accent} strokeWidth="3" fill="none" />
-      <path d="M90 172h220" stroke="#16130f" strokeWidth="8" opacity="0.16" />
+      <path d="M90 172h220" stroke="#1a1612" strokeWidth="8" opacity="0.16" />
     </>
   );
 }
@@ -88,7 +88,7 @@ function Jacket({ fill, accent }: { fill: string; accent: string }) {
       <path d="M140 72 200 96l60-24 36 28-24 20v112H128V120l-24-20z" fill={fill} />
       <path d="M200 96v132" stroke={accent} strokeWidth="3" />
       <path d="M164 88c12 16 24 20 36 20s24-4 36-20" stroke={accent} strokeWidth="3" fill="none" />
-      <path d="M128 168h144" stroke="#16130f" strokeWidth="2" opacity="0.2" />
+      <path d="M128 168h144" stroke="#1a1612" strokeWidth="2" opacity="0.2" />
     </>
   );
 }
@@ -174,8 +174,8 @@ export function ProductVisual({
       aria-label={`${product.name} in ${color.name}`}
     >
       <svg viewBox="0 0 400 240" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="240" fill="#e7dfd0" />
-        <circle cx="330" cy="36" r="70" fill="#f3eee4" />
+        <rect width="400" height="240" fill="#e8dfd0" />
+        <circle cx="330" cy="36" r="70" fill="#fbf7f0" />
         <Shape fill={color.hex} accent={color.accent} />
       </svg>
     </div>

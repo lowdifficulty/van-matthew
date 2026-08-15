@@ -15,10 +15,10 @@ export function ProductCard({ product }: { product: Product }) {
             <h3 className="text-base font-medium tracking-tight">{product.name}</h3>
             <p className="mt-1 text-sm text-ink-soft">{product.tagline}</p>
           </div>
-          <p className="shrink-0 text-sm">{formatPrice(product.price)}</p>
+          <p className="shrink-0 text-sm text-copper-deep">{formatPrice(product.price)}</p>
         </div>
         <p className="mt-2 text-[0.7rem] uppercase tracking-[0.16em] text-mist">
-          {product.line} · {product.category}
+          {product.activities[0]} · {product.category}
         </p>
       </Link>
     </article>

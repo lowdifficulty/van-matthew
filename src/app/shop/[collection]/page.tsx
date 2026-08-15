@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const collection = getCollection(slug);
   if (!collection) return { title: "Collection" };
   return {
-    title: collection.title,
-    description: collection.blurb,
+    title: collection.seoTitle,
+    description: collection.seoDescription,
   };
 }
 
@@ -31,7 +31,7 @@ export default async function CollectionPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-6xl px-5 py-16 md:px-8">
-      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-bronze-deep">
+      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-copper">
         {collection.kicker}
       </p>
       <h1 className="display mt-3 text-5xl md:text-6xl">{collection.title}</h1>
@@ -41,14 +41,20 @@ export default async function CollectionPage({ params }: Props) {
           href="/shop"
           className="text-[0.72rem] uppercase tracking-[0.16em] text-mist hover:text-ink"
         >
-          All collections
+          Shop all
         </Link>
       </p>
-      <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((product) => (
-          <ProductCard key={product.slug} product={product} />
-        ))}
-      </div>
+      {items.length === 0 ? (
+        <p className="mt-14 text-ink-soft">
+          Nothing here right now. Clear a filter or check back for the next drop.
+        </p>
+      ) : (
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

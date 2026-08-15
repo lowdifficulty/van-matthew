@@ -28,7 +28,7 @@ export function AddToCart({ product }: { product: Product }) {
               <label
                 key={option}
                 className={`min-w-12 cursor-pointer border px-3 py-2 text-center text-sm ${
-                  selected ? "border-ink bg-ink text-paper" : "border-line bg-paper"
+                  selected ? "border-copper bg-copper text-cream" : "border-line bg-cream"
                 }`}
               >
                 <input
@@ -48,7 +48,7 @@ export function AddToCart({ product }: { product: Product }) {
       <button
         type="button"
         onClick={onAdd}
-        className="min-h-12 w-full bg-ink text-[0.78rem] uppercase tracking-[0.18em] text-paper transition-colors hover:bg-forest md:w-auto md:px-10"
+        className="min-h-12 w-full bg-copper text-[0.78rem] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-copper-deep md:w-auto md:px-10"
       >
         {added ? "Added to cart" : "Add to cart"}
       </button>

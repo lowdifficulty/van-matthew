@@ -14,20 +14,20 @@ export function Mark({ className = "h-8 w-8", title = "Van & Matthew" }: MarkPro
       aria-label={title}
     >
       <title>{title}</title>
-      <rect width="64" height="64" rx="4" fill="#16130f" />
+      <rect width="64" height="64" rx="4" fill="#243d30" />
       <path
         d="M14 44C18 28 24 18 32 18C28 26 26 34 28 46"
-        stroke="#f3eee4"
+        stroke="#fbf7f0"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
       <path
         d="M50 44C46 28 40 18 32 18C36 26 38 34 36 46"
-        stroke="#c4b08a"
+        stroke="#b85c38"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
-      <circle cx="32" cy="18" r="2" fill="#9a7040" />
+      <circle cx="32" cy="18" r="2" fill="#b85c38" />
     </svg>
   );
 }

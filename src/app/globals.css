@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #16130f;
-  --ink-soft: #3d3830;
-  --paper: #f3eee4;
-  --paper-deep: #e7dfd0;
-  --line: #d4cbb8;
-  --bronze: #9a7040;
-  --bronze-deep: #6f4e28;
-  --forest: #243028;
-  --mist: #8a8376;
-  --focus: #6f4e28;
+  --ink: #1a1612;
+  --ink-soft: #4a4238;
+  --paper: #f4efe6;
+  --paper-deep: #e8dfd0;
+  --cream: #fbf7f0;
+  --line: #d4c6b0;
+  --copper: #b85c38;
+  --copper-deep: #8e4126;
+  --bronze: #b85c38;
+  --bronze-deep: #8e4126;
+  --forest: #243d30;
+  --mist: #7a7268;
+  --focus: #b85c38;
 }
 
 @theme inline {
@@ -18,9 +21,12 @@
   --color-ink-soft: var(--ink-soft);
   --color-paper: var(--paper);
   --color-paper-deep: var(--paper-deep);
+  --color-cream: var(--cream);
   --color-line: var(--line);
-  --color-bronze: var(--bronze);
-  --color-bronze-deep: var(--bronze-deep);
+  --color-copper: var(--copper);
+  --color-copper-deep: var(--copper-deep);
+  --color-bronze: var(--copper);
+  --color-bronze-deep: var(--copper-deep);
   --color-forest: var(--forest);
   --color-mist: var(--mist);
   --font-sans: var(--font-outfit);
@@ -43,7 +49,7 @@ body {
 }
 
 ::selection {
-  background: #d8c4a2;
+  background: #e4b39a;
   color: var(--ink);
 }
 
@@ -57,8 +63,8 @@ body {
   left: 1rem;
   top: -3rem;
   z-index: 80;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--copper);
+  color: var(--cream);
   padding: 0.6rem 1rem;
 }
 

@@ -1,5 +1,6 @@
-export type Audience = "men" | "women" | "youth";
-export type Line = "atelier" | "studio" | "trail";
+export type Audience = "men" | "women" | "unisex";
+export type Activity = "running" | "training" | "lifestyle";
+export type Category = "tops" | "bottoms" | "outerwear" | "footwear" | "accessories";
 export type VisualKind =
   | "runner"
   | "court"
@@ -23,341 +24,460 @@ export type Product = {
   name: string;
   tagline: string;
   price: number;
-  line: Line;
   audiences: Audience[];
-  category: string;
+  activities: Activity[];
+  category: Category;
   visual: VisualKind;
   colors: Colorway[];
   sizes: string[];
   description: string;
   details: string[];
-  featured?: boolean;
+  bestFor: string;
+  isNew?: boolean;
+  bestSeller?: boolean;
+  sale?: boolean;
 };
 
 export const collections: {
-  slug: Line | Audience;
+  slug: string;
   title: string;
   kicker: string;
   blurb: string;
+  seoTitle: string;
+  seoDescription: string;
 }[] = [
   {
-    slug: "atelier",
-    title: "Atelier",
-    kicker: "Lived-in ease",
-    blurb: "Knits, courts, and city pieces cut for the hours between sessions.",
+    slug: "new",
+    title: "New Arrivals",
+    kicker: "The latest from Hudson",
+    blurb:
+      "New layers, updated essentials, and performance pieces built for what comes next. No costume changes required.",
+    seoTitle: "New Arrivals",
+    seoDescription:
+      "Shop the newest Van & Matthew performance sportswear, footwear, layers, and everyday athletic essentials.",
   },
   {
-    slug: "studio",
-    title: "Studio",
-    kicker: "Quiet work",
-    blurb: "Training layers with a low profile and a long memory for motion.",
-  },
-  {
-    slug: "trail",
-    title: "Trail",
-    kicker: "Weathered light",
-    blurb: "Shells, packs, and fleece for dawn paths and late returns.",
+    slug: "best-sellers",
+    title: "Best Sellers",
+    kicker: "Constant rotation",
+    blurb:
+      "The most-worn, most-reordered, most-recommended pieces in the Van & Matthew rotation. Start here if you are new to the brand.",
+    seoTitle: "Best Sellers",
+    seoDescription:
+      "Shop the most-worn Van & Matthew staples: clean design, dependable performance, and comfort that holds up.",
   },
   {
     slug: "men",
     title: "Men",
-    kicker: "The house fit",
-    blurb: "A considered edit for daily training and the walk home.",
+    kicker: "A quieter point of view",
+    blurb:
+      "Performance pieces with a quieter point of view. Built for training days, travel days, long walks, early runs, and everything stacked between them.",
+    seoTitle: "Men's Sportswear",
+    seoDescription:
+      "Shop men's running, training, outerwear, tops, bottoms, footwear, and accessories from Van & Matthew.",
   },
   {
     slug: "women",
     title: "Women",
-    kicker: "Held, not loud",
-    blurb: "Proportion, drape, and pace — nothing borrowed from a menswear last.",
+    kicker: "Designed to move",
+    blurb:
+      "Designed to move. Easy enough to live in. Performance sportswear made around real routines: hard sessions, quick errands, and long weekends.",
+    seoTitle: "Women's Sportswear",
+    seoDescription:
+      "Shop women's running, training, outerwear, tops, bottoms, footwear, and accessories from Van & Matthew.",
   },
   {
-    slug: "youth",
-    title: "Youth",
-    kicker: "First miles",
-    blurb: "Smaller scale, same materials language. Built to be outgrown slowly.",
+    slug: "unisex",
+    title: "Unisex",
+    kicker: "Fewer rules",
+    blurb:
+      "Good design does not need more rules. Relaxed silhouettes, shared staples, and versatile layers built to be worn your way.",
+    seoTitle: "Unisex",
+    seoDescription: "Shop unisex Van & Matthew staples and shared layers.",
+  },
+  {
+    slug: "running",
+    title: "Running",
+    kicker: "Find your pace",
+    blurb:
+      "Run before breakfast. Run after work. Our running collection is built for consistency: lightweight layers, breathable essentials, and nothing in the way once you settle in.",
+    seoTitle: "Running",
+    seoDescription:
+      "Shop Van & Matthew running apparel, layers, footwear, and accessories designed for everyday miles.",
+  },
+  {
+    slug: "training",
+    title: "Training",
+    kicker: "Do the work",
+    blurb:
+      "No speeches required. Training gear should stretch where you need it, stay put where you do not, and disappear once the session starts.",
+    seoTitle: "Training",
+    seoDescription:
+      "Shop Van & Matthew training apparel and gym essentials for strength, conditioning, mobility, and daily movement.",
+  },
+  {
+    slug: "lifestyle",
+    title: "Lifestyle",
+    kicker: "Sport, off the clock",
+    blurb:
+      "Athletic influence. Everyday proportions. Comfort, movement, and utility in a quieter everyday shape.",
+    seoTitle: "Lifestyle Sportswear",
+    seoDescription:
+      "Clean everyday sportswear informed by performance, movement, and Hudson, New York.",
+  },
+  {
+    slug: "outerwear",
+    title: "Outerwear",
+    kicker: "Weather is part of it",
+    blurb:
+      "Layers for cold platforms, windy streets, and the stretch of winter when the sun goes down too early. Technical where it matters. Easy everywhere else.",
+    seoTitle: "Outerwear",
+    seoDescription:
+      "Shop Van & Matthew jackets and layers designed for movement and changing weather.",
+  },
+  {
+    slug: "tops",
+    title: "Tops",
+    kicker: "Tees, crews, layers",
+    blurb: "Technical tees, tanks, crews, and easy layers for the session and the hours after.",
+    seoTitle: "Tops",
+    seoDescription: "Shop Van & Matthew tees, crews, and technical layers.",
+  },
+  {
+    slug: "bottoms",
+    title: "Bottoms",
+    kicker: "Shorts, pants, tights",
+    blurb: "Shorts, pants, tights, and movement-first staples.",
+    seoTitle: "Bottoms",
+    seoDescription: "Shop Van & Matthew shorts, pants, and tights.",
+  },
+  {
+    slug: "footwear",
+    title: "Footwear",
+    kicker: "Built from the ground up",
+    blurb:
+      "A focused footwear collection designed around comfort, movement, and clean everyday utility.",
+    seoTitle: "Footwear",
+    seoDescription: "Shop Van & Matthew running, training, and everyday footwear.",
+  },
+  {
+    slug: "accessories",
+    title: "Accessories",
+    kicker: "The small things do a lot of work",
+    blurb:
+      "Caps, bags, and everyday carry built to finish the system without overcomplicating it.",
+    seoTitle: "Accessories",
+    seoDescription: "Shop Van & Matthew bags, caps, and everyday carry.",
+  },
+  {
+    slug: "sale",
+    title: "Sale",
+    kicker: "Last sizes. Previous seasons.",
+    blurb: "Selected Van & Matthew pieces at reduced prices while inventory lasts. Same standards.",
+    seoTitle: "Sale",
+    seoDescription: "Shop selected Van & Matthew pieces at reduced prices.",
   },
 ];
 
 export const products: Product[] = [
   {
-    slug: "meridian-runner",
-    name: "Meridian Runner",
-    tagline: "A long-mile last with a quiet midsole.",
-    price: 188,
-    line: "studio",
-    audiences: ["men", "women"],
-    category: "Footwear",
-    visual: "runner",
-    featured: true,
-    colors: [
-      { name: "Harbor Ink", hex: "#243028", accent: "#c4b08a" },
-      { name: "Vale Clay", hex: "#8c5340", accent: "#e7dfd0" },
-    ],
-    sizes: ["6", "7", "8", "9", "10", "11", "12", "13"],
-    description:
-      "Meridian is the house runner: a refined last, a responsive foam that stays composed past the tenth mile, and an upper that disappears on the foot. Designed by Matthew for tempo; finished by Van for the walk to coffee after.",
-    details: [
-      "Dual-density midsole with a carved crash pad",
-      "Breathable knit vamp, reinforced at the medial wrap",
-      "Gum-speckle outsole for wet pavement and studio floors",
-      "Recycled mesh lining, unbranded tongue",
-    ],
-  },
-  {
-    slug: "vale-court",
-    name: "Vale Court",
-    tagline: "A low court silhouette for the rest of the week.",
-    price: 164,
-    line: "atelier",
-    audiences: ["men", "women"],
-    category: "Footwear",
-    visual: "court",
-    featured: true,
-    colors: [
-      { name: "Paper", hex: "#e7dfd0", accent: "#3d3830" },
-      { name: "Bronze", hex: "#9a7040", accent: "#16130f" },
-    ],
-    sizes: ["6", "7", "8", "9", "10", "11", "12", "13"],
-    description:
-      "Vale Court sits between a training shoe and a city shoe. The cupsole is thin enough to feel the floor, thick enough for cobblestones. No panel theater — just a clean foxing and a leather that darkens with weather.",
-    details: [
-      "Full-grain leather upper, vegetable-tanned",
-      "Cushioned sockliner, removable",
-      "Herringbone gum outsole",
-      "Unlined collar for a softer break-in",
-    ],
-  },
-  {
-    slug: "solace-knit",
-    name: "Solace Knit",
-    tagline: "A sock-like trainer that still holds a line.",
-    price: 156,
-    line: "atelier",
-    audiences: ["women"],
-    category: "Footwear",
-    visual: "knit",
-    featured: true,
-    colors: [
-      { name: "Mist", hex: "#8a8376", accent: "#f3eee4" },
-      { name: "Clay Rose", hex: "#b45a3c", accent: "#e7dfd0" },
-    ],
-    sizes: ["5", "6", "7", "8", "9", "10", "11"],
-    description:
-      "Solace is knit as a single piece, then set on a sculpted foam that keeps the heel honest. It is the shoe Van wears on travel days: soft, exact, and unwilling to look like a slipper.",
-    details: [
-      "One-piece performance knit",
-      "Internal heel counter, barely there",
-      "Lightweight foam with a carved waist",
-      "Reflective yarn at the collar, visible only at night",
-    ],
-  },
-  {
-    slug: "ember-slip",
-    name: "Ember Slip",
-    tagline: "An evening shoe that still respects a morning.",
-    price: 142,
-    line: "atelier",
-    audiences: ["men", "women"],
-    category: "Footwear",
-    visual: "slip",
-    colors: [
-      { name: "Soot", hex: "#2a2622", accent: "#9a7040" },
-      { name: "Sand", hex: "#d4cbb8", accent: "#3d3830" },
-    ],
-    sizes: ["6", "7", "8", "9", "10", "11", "12"],
-    description:
-      "Ember Slip is a covered-vamp silhouette with a hidden elastic and a leather footbed. It is for kitchens, galleries, and the last train — not for pretending to be a runner.",
-    details: [
-      "Suede vamp with elastic goring",
-      "Leather-covered footbed",
-      "Flexible cupsole",
-      "Packed in a reusable cotton sleeve",
-    ],
-  },
-  {
-    slug: "northline-shell",
-    name: "Northline Shell",
-    tagline: "A three-layer jacket that refuses noise.",
-    price: 248,
-    line: "trail",
-    audiences: ["men", "women"],
-    category: "Outerwear",
-    visual: "jacket",
-    featured: true,
-    colors: [
-      { name: "Forest", hex: "#243028", accent: "#c4b08a" },
-      { name: "Ink", hex: "#16130f", accent: "#8a8376" },
-    ],
-    sizes: ["XS", "S", "M", "L", "XL"],
-    description:
-      "Northline is the house shell: taped seams, a hidden hood, and a drape that looks like a coat until the weather asks otherwise. Matthew cut the pattern after a wet week in the Gunks; Van insisted the hardware stay matte.",
-    details: [
-      "3-layer recycled membrane, 20k/20k",
-      "Pit zips, two-way front",
-      "Packs into its own chest pocket",
-      "Articulated elbows, no logos at the shoulder",
-    ],
-  },
-  {
-    slug: "harbor-fleece",
-    name: "Harbor Fleece",
-    tagline: "A half-zip that behaves like a sweater.",
-    price: 148,
-    line: "trail",
-    audiences: ["men"],
-    category: "Layers",
-    visual: "fleece",
-    colors: [
-      { name: "Oat", hex: "#c4b08a", accent: "#243028" },
-      { name: "River", hex: "#3a4a46", accent: "#e7dfd0" },
-    ],
-    sizes: ["S", "M", "L", "XL"],
-    description:
-      "Harbor Fleece is brushed on the inside, clean on the face, and cut slightly long so it sits under a shell without riding. The half-zip is for temperature, not for a logo window.",
-    details: [
-      "Recycled pile face, grid backer",
-      "Matte zip, leather pull",
-      "Hand pockets set high for a pack belt",
-      "Finished hem, no drawcord theater",
-    ],
-  },
-  {
-    slug: "lumen-tee",
-    name: "Lumen Tee",
-    tagline: "A training shirt that can leave the studio.",
+    slug: "hudson-run-tee",
+    name: "Hudson Run Tee",
+    tagline: "Everyday miles. Nothing extra.",
     price: 68,
-    line: "studio",
-    audiences: ["men", "women"],
-    category: "Tops",
+    audiences: ["men", "women", "unisex"],
+    activities: ["running", "lifestyle"],
+    category: "tops",
     visual: "tee",
+    isNew: true,
+    bestSeller: true,
+    bestFor: "Daily running, travel, warm-weather training",
     colors: [
-      { name: "Paper", hex: "#f3eee4", accent: "#16130f" },
-      { name: "Ink", hex: "#16130f", accent: "#f3eee4" },
-      { name: "Bronze", hex: "#9a7040", accent: "#f3eee4" },
+      { name: "Parchment", hex: "#f4efe6", accent: "#1a1612" },
+      { name: "Ink", hex: "#1a1612", accent: "#fbf7f0" },
+      { name: "Copper", hex: "#b85c38", accent: "#fbf7f0" },
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     description:
-      "Lumen is a midweight jersey with a set-in sleeve and a neck that stays put. It wicks without turning glossy. The only mark is a small house stamp at the hem, inside.",
+      "A lightweight running tee built around easy movement and repeat wear. Clean enough for the rest of the day, with a fit intended to disappear once you find your pace.",
     details: [
-      "Organic cotton / TENCEL blend",
-      "Side seams moved back for motion",
-      "Garment-dyed, will soften",
-      "Designed to pair with Ridge Short or Cinder Pant",
+      "Built for daily miles and warm-weather training",
+      "Standard fit that stays out of the way",
+      "Soft, breathable jersey with a dry hand",
+      "Unbranded hem — house stamp inside only",
     ],
   },
   {
-    slug: "ridge-short",
-    name: "Ridge Short",
-    tagline: "A 7-inch short with real pockets.",
+    slug: "river-training-short",
+    name: "River Training Short",
+    tagline: "Built for the work between warm-up and done.",
     price: 78,
-    line: "studio",
     audiences: ["men"],
-    category: "Bottoms",
+    activities: ["training"],
+    category: "bottoms",
     visual: "short",
+    isNew: true,
+    bestFor: "Strength, conditioning, general training",
     colors: [
-      { name: "Ink", hex: "#16130f", accent: "#c4b08a" },
-      { name: "Olive", hex: "#4a5340", accent: "#e7dfd0" },
+      { name: "Ink", hex: "#1a1612", accent: "#b85c38" },
+      { name: "Forest", hex: "#243d30", accent: "#f4efe6" },
     ],
     sizes: ["S", "M", "L", "XL"],
     description:
-      "Ridge Short is cut for a stride, not a photoshoot. The inseam is 7 inches. The pockets hold a phone without slapping. The liner is optional and sold separately — we assume you know your own heat.",
+      "A versatile training short with a streamlined silhouette, movement-first patterning, and low-profile storage. Stretch where you need it. Stay put where you do not.",
     details: [
+      "Streamlined silhouette for lifting and circuits",
+      "Low-profile storage that does not slap",
       "Four-way stretch woven",
-      "Bonded hem, no stitch chatter",
       "Split side for a longer step",
-      "Hidden key loop",
     ],
   },
   {
-    slug: "cinder-pant",
-    name: "Cinder Track Pant",
-    tagline: "A tapered pant that still sits like clothing.",
+    slug: "warren-street-crew",
+    name: "Warren Street Crew",
+    tagline: "Athletic comfort, minus the locker-room look.",
     price: 118,
-    line: "studio",
-    audiences: ["women"],
-    category: "Bottoms",
-    visual: "pant",
+    audiences: ["men", "women", "unisex"],
+    activities: ["lifestyle", "training"],
+    category: "tops",
+    visual: "fleece",
+    bestSeller: true,
+    bestFor: "Warm-ups, travel, daily wear",
     colors: [
-      { name: "Char", hex: "#2c2a28", accent: "#9a7040" },
-      { name: "Stone", hex: "#8a8376", accent: "#16130f" },
+      { name: "Oat", hex: "#e8dfd0", accent: "#243d30" },
+      { name: "River", hex: "#243d30", accent: "#fbf7f0" },
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
     description:
-      "Cinder is a track pant that borrowed its drape from a trouser. High rise, tapered ankle, and a waistband that does not announce itself. For the studio, the platform, and the train.",
+      "A structured crewneck designed to sit between training gear and everyday sportswear. Athletic comfort without the gym-only look.",
     details: [
-      "Brushed stretch twill",
-      "Piped side, tone-on-tone",
-      "Zip ankle, matte",
-      "Deep side pockets, one rear",
+      "Midweight fleece with a clean face",
+      "Set-in sleeve, finished hem",
+      "Warm-up ready, travel friendly",
+      "Works over a tee or under a shell",
     ],
   },
   {
-    slug: "atlas-pack",
-    name: "Atlas Pack",
-    tagline: "Eighteen liters. No extra story.",
-    price: 128,
-    line: "trail",
+    slug: "north-bay-shell",
+    name: "North Bay Shell",
+    tagline: "For weather that cannot make up its mind.",
+    price: 248,
     audiences: ["men", "women"],
-    category: "Goods",
-    visual: "pack",
+    activities: ["running", "lifestyle"],
+    category: "outerwear",
+    visual: "jacket",
+    isNew: true,
+    bestFor: "Wind, transitional weather, commuting",
     colors: [
-      { name: "Forest", hex: "#243028", accent: "#c4b08a" },
-      { name: "Clay", hex: "#8c5340", accent: "#e7dfd0" },
+      { name: "Forest", hex: "#243d30", accent: "#fbf7f0" },
+      { name: "Ink", hex: "#1a1612", accent: "#b85c38" },
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A clean outer layer for changing conditions, light layering, and movement through town or quieter roads. Technical where it matters. Easy everywhere else.",
+    details: [
+      "Light weather protection for wind and mist",
+      "Packs into itself for the train",
+      "Articulated sleeves, hidden hood",
+      "Matte hardware, no shoulder branding",
+    ],
+  },
+  {
+    slug: "catskill-warmup-pant",
+    name: "Catskill Warm-Up Pant",
+    tagline: "Easy on. Hard to take out of rotation.",
+    price: 128,
+    audiences: ["men", "women"],
+    activities: ["training", "lifestyle"],
+    category: "bottoms",
+    visual: "pant",
+    bestSeller: true,
+    bestFor: "Warm-ups, recovery, travel",
+    colors: [
+      { name: "Char", hex: "#1a1612", accent: "#b85c38" },
+      { name: "Stone", hex: "#7a7268", accent: "#fbf7f0" },
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A tapered warm-up pant designed for pre-session movement, travel, and everyday wear. Soft enough for recovery. Structured enough for the platform.",
+    details: [
+      "Tapered ankle, easy rise",
+      "Brushed stretch twill",
+      "Deep side pockets",
+      "Tone-on-tone side piped detail",
+    ],
+  },
+  {
+    slug: "station-pack",
+    name: "Station Pack",
+    tagline: "The bag that leaves when you do.",
+    price: 128,
+    audiences: ["unisex"],
+    activities: ["training", "lifestyle"],
+    category: "accessories",
+    visual: "pack",
+    bestSeller: true,
+    bestFor: "Gym, work, train, weekend",
+    colors: [
+      { name: "Forest", hex: "#243d30", accent: "#fbf7f0" },
+      { name: "Clay", hex: "#b85c38", accent: "#f4efe6" },
     ],
     sizes: ["One size"],
     description:
-      "Atlas is an 18-liter day pack with a single main compartment, a laptop sleeve, and a front pocket that does not require a map to use. The silhouette is a quiet rectangle. The straps are padded where it matters.",
+      "A compact everyday training bag with space for the essentials and a silhouette clean enough for commuting. The bag that leaves when you do.",
     details: [
-      "Weathered canvas with a recycled lining",
-      "Padded 14-inch sleeve",
-      "Sternum strap, removable",
+      "Main compartment plus a laptop sleeve",
+      "Front pocket you do not need a map for",
+      "Padded straps, removable sternum strap",
       "Leather zipper pulls, house-stamped",
     ],
   },
   {
-    slug: "drift-crew",
-    name: "Drift Crew",
-    tagline: "A youth knit that can take a season of grass stains.",
-    price: 88,
-    line: "atelier",
-    audiences: ["youth"],
-    category: "Tops",
-    visual: "tee",
+    slug: "warren-mile-runner",
+    name: "Warren Mile Runner",
+    tagline: "A long-mile last with a quiet midsole.",
+    price: 168,
+    audiences: ["men", "women"],
+    activities: ["running"],
+    category: "footwear",
+    visual: "runner",
+    isNew: true,
+    bestFor: "Daily miles, tempo, commuting on foot",
     colors: [
-      { name: "River", hex: "#3a4a46", accent: "#e7dfd0" },
-      { name: "Paper", hex: "#f3eee4", accent: "#16130f" },
+      { name: "Harbor Ink", hex: "#243d30", accent: "#fbf7f0" },
+      { name: "Vale Clay", hex: "#b85c38", accent: "#f4efe6" },
     ],
-    sizes: ["8Y", "10Y", "12Y", "14Y"],
+    sizes: ["6", "7", "8", "9", "10", "11", "12", "13"],
     description:
-      "Drift Crew is a heavier jersey for younger shoulders. The neck is bound, the hem is straight, and the dye will take a summer of light. We do not print cartoons on it.",
+      "The house runner: a refined last, a composed midsole, and an upper that disappears on the foot. Built for the miles that become part of your week.",
     details: [
-      "Organic cotton jersey",
-      "Reinforced shoulder seams",
-      "Same house stamp as the adult Lumen, smaller",
-      "Machine wash, hang dry if you can",
+      "Responsive foam that stays composed",
+      "Breathable knit vamp",
+      "Gum-speckle outsole for wet pavement",
+      "Unbranded tongue",
     ],
   },
   {
-    slug: "kin-youth-trainer",
-    name: "Kin Youth Trainer",
-    tagline: "A first trainer with an adult last, scaled.",
-    price: 98,
-    line: "studio",
-    audiences: ["youth"],
-    category: "Footwear",
-    visual: "runner",
+    slug: "promenade-trainer",
+    name: "Promenade Trainer",
+    tagline: "A low trainer for the rest of the week.",
+    price: 148,
+    audiences: ["men", "women"],
+    activities: ["training", "lifestyle"],
+    category: "footwear",
+    visual: "court",
+    bestFor: "Studio floors, errands, travel days",
     colors: [
-      { name: "Harbor Ink", hex: "#243028", accent: "#c4b08a" },
-      { name: "Vale Clay", hex: "#8c5340", accent: "#e7dfd0" },
+      { name: "Parchment", hex: "#f4efe6", accent: "#1a1612" },
+      { name: "Copper", hex: "#b85c38", accent: "#1a1612" },
     ],
-    sizes: ["1Y", "2Y", "3Y", "4Y", "5Y", "6Y"],
+    sizes: ["6", "7", "8", "9", "10", "11", "12", "13"],
     description:
-      "Kin is Meridian’s younger sibling: the same carved midsole language, a tougher toe, and a closure that a child can manage. Built to be outgrown slowly, then handed down.",
+      "A focused trainer designed around comfort, movement, and clean everyday utility. Thin enough to feel the floor. Thick enough for cobblestones.",
     details: [
-      "Hook-and-loop plus a lace option",
-      "Wider toe than most youth lasts",
-      "Easy-clean outsole",
-      "Removable insole for growing room",
+      "Cushioned sockliner, removable",
+      "Flexible cupsole",
+      "Clean foxing, no panel theater",
+      "Unlined collar for a softer break-in",
+    ],
+  },
+  {
+    slug: "olana-daily-tight",
+    name: "Olana Daily Tight",
+    tagline: "Support that does not announce itself.",
+    price: 98,
+    audiences: ["women"],
+    activities: ["running", "training"],
+    category: "bottoms",
+    visual: "pant",
+    bestSeller: true,
+    bestFor: "Everyday miles, studio sessions, errands after",
+    colors: [
+      { name: "Ink", hex: "#1a1612", accent: "#b85c38" },
+      { name: "Forest", hex: "#243d30", accent: "#fbf7f0" },
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A close-fit tight for the runs and sessions that make up most of the week. Supportive without looking engineered. Easy enough to live in after.",
+    details: [
+      "Close fit, high rise",
+      "Hidden waist pocket",
+      "Matte face, no shine",
+      "Designed to pair with the Hudson Run Tee",
+    ],
+  },
+  {
+    slug: "cold-spring-vest",
+    name: "Cold Spring Vest",
+    tagline: "Warmth without the extra sleeve story.",
+    price: 168,
+    audiences: ["men", "women"],
+    activities: ["lifestyle", "running"],
+    category: "outerwear",
+    visual: "jacket",
+    bestFor: "Cold starts, layering, windy platforms",
+    colors: [
+      { name: "Forest", hex: "#243d30", accent: "#fbf7f0" },
+      { name: "Copper", hex: "#b85c38", accent: "#f4efe6" },
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A clean insulated vest for mornings when leaving the house is the hardest rep. Useful warmth, mobility, and a silhouette that still looks like clothing.",
+    details: [
+      "Light insulation, free arms",
+      "Two-way front, high collar",
+      "Packs into its own pocket",
+      "Works over a crew or under a shell",
+    ],
+  },
+  {
+    slug: "beacon-layer-tee",
+    name: "Beacon Layer Tee",
+    tagline: "A training shirt that can leave the studio.",
+    price: 58,
+    audiences: ["men", "women"],
+    activities: ["training"],
+    category: "tops",
+    visual: "tee",
+    sale: true,
+    bestFor: "Strength, conditioning, daily movement",
+    colors: [
+      { name: "Parchment", hex: "#f4efe6", accent: "#1a1612" },
+      { name: "Ink", hex: "#1a1612", accent: "#fbf7f0" },
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"],
+    description:
+      "A midweight training tee with a set-in sleeve and a neck that stays put. It wicks without turning glossy. Previous-season colorways, same standard.",
+    details: [
+      "Side seams moved back for motion",
+      "Garment-dyed, will soften",
+      "Pairs with the River Training Short",
+      "Selected colorways on sale while they last",
+    ],
+  },
+  {
+    slug: "columbia-street-cap",
+    name: "Columbia Street Cap",
+    tagline: "Shade, then get on with it.",
+    price: 32,
+    audiences: ["unisex"],
+    activities: ["running", "lifestyle"],
+    category: "accessories",
+    visual: "pack",
+    sale: true,
+    bestFor: "Runs, errands, bright platforms",
+    colors: [
+      { name: "Ink", hex: "#1a1612", accent: "#b85c38" },
+      { name: "Forest", hex: "#243d30", accent: "#fbf7f0" },
+    ],
+    sizes: ["One size"],
+    description:
+      "A low-profile cap that finishes the system without overcomplicating it. Previous-season colorways. Same construction.",
+    details: [
+      "Unstructured crown, curved brim",
+      "Adjustable back",
+      "Sweatband that actually works",
+      "House stamp inside, not on the front",
     ],
   },
 ];
@@ -371,9 +491,27 @@ export function getCollection(slug: string) {
 }
 
 export function productsFor(slug: string) {
-  return products.filter(
-    (product) => product.line === slug || product.audiences.includes(slug as Audience),
-  );
+  return products.filter((product) => {
+    if (slug === "new") return Boolean(product.isNew);
+    if (slug === "best-sellers") return Boolean(product.bestSeller);
+    if (slug === "sale") return Boolean(product.sale);
+    if (slug === "men" || slug === "women" || slug === "unisex") {
+      return product.audiences.includes(slug);
+    }
+    if (slug === "running" || slug === "training" || slug === "lifestyle") {
+      return product.activities.includes(slug);
+    }
+    if (
+      slug === "tops" ||
+      slug === "bottoms" ||
+      slug === "outerwear" ||
+      slug === "footwear" ||
+      slug === "accessories"
+    ) {
+      return product.category === slug;
+    }
+    return false;
+  });
 }
 
 export function formatPrice(value: number) {

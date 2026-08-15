@@ -6,31 +6,32 @@ import { ProductVisual } from "@/components/ProductVisual";
 import { formatPrice, getProduct } from "@/lib/products";
 
 export default function CartPage() {
-  const { lines, setQty, remove, subtotal, clear, ready } = useCart();
+  const { lines, setQty, remove, subtotal, ready } = useCart();
 
   if (!ready) {
     return (
       <div className="mx-auto max-w-4xl px-5 py-16 md:px-8">
-        <p className="text-ink-soft">Loading your cart…</p>
+        <p className="text-ink-soft">Loading your bag…</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-4xl px-5 py-16 md:px-8">
-      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-bronze-deep">Cart</p>
-      <h1 className="display mt-3 text-5xl">Your edit.</h1>
+      <p className="text-[0.7rem] uppercase tracking-[0.2em] text-copper">Bag</p>
+      <h1 className="display mt-3 text-5xl">Your bag</h1>
 
       {lines.length === 0 ? (
         <div className="mt-10">
-          <p className="text-ink-soft leading-7">
-            The cart is empty. The house is not.
+          <p className="display text-3xl">Nothing here yet.</p>
+          <p className="mt-3 text-ink-soft leading-7">
+            Start with the pieces built to stay in rotation.
           </p>
           <Link
-            href="/shop"
-            className="mt-6 inline-block min-h-12 bg-ink px-7 text-[0.75rem] uppercase tracking-[0.16em] leading-[3rem] text-paper"
+            href="/shop/new"
+            className="mt-6 inline-block min-h-12 bg-copper px-7 text-[0.75rem] uppercase tracking-[0.16em] leading-[3rem] text-cream"
           >
-            Shop the house
+            Shop New Arrivals
           </Link>
         </div>
       ) : (
@@ -59,7 +60,7 @@ export default function CartPage() {
                         max={12}
                         value={line.qty}
                         onChange={(event) => setQty(line.slug, line.size, Number(event.target.value))}
-                        className="h-10 w-16 border border-line bg-paper px-2"
+                        className="h-10 w-16 border border-line bg-cream px-2"
                       />
                       <button
                         type="button"
@@ -79,21 +80,21 @@ export default function CartPage() {
             <p className="text-lg">
               Subtotal <span className="font-medium">{formatPrice(subtotal)}</span>
             </p>
-            <div className="flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={clear}
-                className="min-h-12 border border-line px-6 text-[0.72rem] uppercase tracking-[0.16em]"
-              >
-                Clear
-              </button>
-              <p className="min-h-12 bg-ink px-6 text-[0.72rem] uppercase tracking-[0.16em] leading-[3rem] text-paper">
-                Checkout opens in atelier
-              </p>
-            </div>
+            <p className="min-h-12 bg-copper px-6 text-[0.72rem] uppercase tracking-[0.16em] leading-[3rem] text-cream">
+              Checkout
+            </p>
           </div>
           <p className="mt-4 text-sm text-ink-soft">
-            This is a brand preview. No payment is taken — write the house if you want a fitting.
+            Secure checkout. Shipping and return details shown before purchase.
+          </p>
+          <h2 className="display mt-16 text-3xl">Good with that</h2>
+          <p className="mt-3">
+            <Link
+              href="/shop/best-sellers"
+              className="text-[0.75rem] uppercase tracking-[0.16em] text-copper underline-offset-4 hover:underline"
+            >
+              Shop Best Sellers
+            </Link>
           </p>
         </>
       )}

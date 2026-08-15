@@ -16,20 +16,20 @@ export function Newsletter() {
     <section className="border-y border-line bg-paper-deep">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-16 md:grid-cols-2 md:items-end md:px-8">
         <div>
-          <p className="text-[0.7rem] uppercase tracking-[0.2em] text-bronze-deep">
-            The house note
+          <p className="text-[0.7rem] uppercase tracking-[0.2em] text-copper">
+            Stay in motion
           </p>
           <h2 className="display mt-3 text-4xl leading-tight md:text-5xl">
-            A letter, not a blast.
+            Stay in motion.
           </h2>
           <p className="mt-4 max-w-md text-ink-soft leading-7">
-            Drops, fittings, and the occasional field note from Van & Matthew.
-            We write when there is something worth saying.
+            Get first access to new drops, limited releases, stories from Hudson,
+            and the occasional reason to get outside.
           </p>
         </div>
         {sent ? (
           <p className="text-lg" role="status">
-            Thank you. We will write when the next drop is ready.
+            You&apos;re in. See you out there.
           </p>
         ) : (
           <form onSubmit={onSubmit} className="flex flex-col gap-3 sm:flex-row">
@@ -43,14 +43,14 @@ export function Newsletter() {
               autoComplete="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@atelier.com"
-              className="min-h-12 flex-1 border border-line bg-paper px-4 text-ink placeholder:text-mist"
+              placeholder="Email address"
+              className="min-h-12 flex-1 border border-line bg-cream px-4 text-ink placeholder:text-mist"
             />
             <button
               type="submit"
-              className="min-h-12 bg-ink px-6 text-[0.75rem] uppercase tracking-[0.16em] text-paper transition-colors hover:bg-forest"
+              className="min-h-12 bg-copper px-6 text-[0.75rem] uppercase tracking-[0.16em] text-cream transition-colors hover:bg-copper-deep"
             >
-              Join
+              Join the List
             </button>
           </form>
         )}
